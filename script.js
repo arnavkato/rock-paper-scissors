@@ -20,7 +20,7 @@ function getHumanChoice() {
     return humanChoice;
 }
 
-function playRound(humanChoice, computerChoice){
+function playRound(humanChoice, computerChoice, humanScore, computerScore) {
     humanChoice = humanChoice.toLowerCase();
 
     switch (humanChoice) {
@@ -58,7 +58,7 @@ function playRound(humanChoice, computerChoice){
             switch (computerChoice) {
                 case 'rock':
                     console.log('computer wins');
-                    computerScorecore++;
+                    computerScore++;
                     break;
                 case 'paper':
                     console.log('you win');
@@ -69,22 +69,39 @@ function playRound(humanChoice, computerChoice){
                     break;
             }
             break;
-
     }
 
     console.log(
       `Your choice: ${humanChoice}, computer's choice: ${computerChoice}`
     );
+    return [humanScore, computerScore];
 }
 
+function playGame() {
+    let humanScore = 0;
+    let computerScore = 0;
+    let humanSelection;
+    let computerSelection;
 
-let humanScore = 0;
-let computerScore = 0;
+    for(let i=0; i<5; i++) {
+        humanSelection = getHumanChoice();
+        computerSelection = getComputerChoice();
+        [humanScore, computerScore] = playRound(humanSelection, computerSelection, humanScore, computerScore);
+        console.log(`current scores: you: ${humanScore}, computer: ${computerScore}`);
+    }
+    
+    if (humanScore > computerScore) {
+        console.log('you beat the computer!');
+    }
+    else if (humanScore === computerScore) {
+        console.log('you tied the computer!');
+    }
+    else {
+        console.log('you lost to the computer!');
+    }
+}
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-
-playRound(humanSelection, computerSelection);
+playGame();
 
 
 
