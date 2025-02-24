@@ -28,35 +28,47 @@ function playRound(humanChoice, computerChoice){
             switch (computerChoice) {
                 case 'rock':
                     console.log('tie');
+                    break;
                 case 'paper':
                     console.log('computer wins');
                     computerScore++;
+                    break;
                 case 'scissors':
                     console.log('you win');
                     humanScore++;
+                    break;
             }
+            break;
         case 'paper':
             switch (computerChoice) {
                 case 'rock':
                     console.log('you win');
                     humanScore++;
+                    break;
                 case 'paper':
                     console.log('tie');
+                    break;
                 case 'scissors':
                     console.log('computer wins');
                     computerScore++;
+                    break;
             }
+            break;
         case 'scissors':
             switch (computerChoice) {
                 case 'rock':
                     console.log('computer wins');
                     computerScorecore++;
+                    break;
                 case 'paper':
                     console.log('you win');
                     humanScore++;
+                    break;
                 case 'scissors':
                     console.log('tie');
+                    break;
             }
+            break;
 
     }
 
@@ -86,7 +98,3 @@ playRound(humanSelection, computerSelection);
 
 
 
-
-//debugging
-console.log(getComputerChoice());
-console.log(getHumanChoice());
