@@ -26,11 +26,14 @@ rockButton.textContent = "Rock";
 paperButton.textContent = "Paper";
 scissorsButton.textContent = "Scissors";
 
+
+const humanMoveLog = document.createElement("p");
+const computerMoveLog = document.createElement("p");
 const humanLabel = document.createElement("p");
 const computerLabel = document.createElement("p");
 
 const results = document.createElement("div");
-results.append(humanLabel, computerLabel);
+results.append(humanMoveLog, computerMoveLog, humanLabel, computerLabel);
 
 document.body.append(rockButton, paperButton, scissorsButton, results);
 
@@ -41,6 +44,9 @@ function getComputerChoice() {
 
 function playRound(humanSelection) {
     const computerChoice = getComputerChoice();
+
+    humanMoveLog.textContent = `your move: ${humanSelection}`
+    computerMoveLog.textContent = `computer's move: ${computerChoice}`;
 
     switch (humanSelection) {
         case "rock":
@@ -67,6 +73,20 @@ function playRound(humanSelection) {
 function handleRound(humanSelection) {
     let roundResult = playRound(humanSelection);
 
+    if (humanScore == 5) {
+      alert("player wins!");
+      rockButton.disabled = true;
+      paperButton.disabled = true;
+      scissorsButton.disabled = true;
+      return;
+    } else if (computerScore == 5) {
+      alert("computer wins!");
+      rockButton.disabled = true;
+      paperButton.disabled = true;
+      scissorsButton.disabled = true;
+      return;
+    }
+
     if (roundResult === "human") {
         humanScore++;
     } else if (roundResult === "computer") {
@@ -83,13 +103,4 @@ function playGame() {
     scissorsButton.addEventListener("click", () => handleRound("scissors"));
 }
 
-
-if (humanScore == 5) {
-    alert("player wins!");
-}
-else if (computerScore == 5) {
-    alert("computer wins!");
-}
-else {
-    playGame();
-}
+playGame();
