@@ -83,12 +83,10 @@ function playGame() {
     let humanSelection;
     let computerSelection;
 
-    for(let i=0; i<5; i++) {
         humanSelection = getHumanChoice();
         computerSelection = getComputerChoice();
         [humanScore, computerScore] = playRound(humanSelection, computerSelection, humanScore, computerScore);
         console.log(`current scores: you: ${humanScore}, computer: ${computerScore}`);
-    }
     
     if (humanScore > computerScore) {
         console.log('you beat the computer!');
@@ -101,11 +99,32 @@ function playGame() {
     }
 }
 
-playGame();
 
 
 
 
+const container = document.querySelector("body");
+
+const rockButton = document.createElement("button");
+const paperButton = document.createElement("button");
+const scissorsButton = document.createElement("button");
+
+rockButton.textContent = "Rock";
+paperButton.textContent = "Paper";
+scissorsButton.textContent = "Scissors";
+
+
+const results = document.createElement("div");
+
+
+
+rockButton.addEventListener("click", playRound("rock"));
+paperButton.addEventListener("click", playRound("paper"));
+scissorsButton.addEventListener("click", playRound("scissors"));
+
+
+
+container.append(rockButton, paperButton, scissorsButton, results);
 
 
 
